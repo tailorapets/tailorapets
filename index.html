@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zoopal - Your Global Pet Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+    header {
+      background: #2e8b57;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 3em;
+    }
+    header p {
+      font-size: 1.2em;
+      margin: 0 0 20px;
+    }
+    header a.button {
+      background: #fff;
+      color: #2e8b57;
+      padding: 12px 30px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+    }
+
+    /* Navigation */
+    nav {
+      background: #1f5c40;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    nav a:hover, nav a:focus {
+      background: #3aa673;
+      outline: none;
+    }
+    nav a.active {
+      background-color: #3aa673;
+      box-shadow: 0 0 8px #3aa673;
+    }
+
+    .collections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 40px 0;
+      gap: 20px;
+      padding: 0 10px;
+    }
+    .collection {
+      background: white;
+      width: 220px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .collection:hover {
+      transform: scale(1.05);
+    }
+    .collection img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .collection h3 {
+      margin: 15px 0 10px;
+      font-size: 1.3em;
+      color: #2e8b57;
+    }
+    .products {
+      max-width: 1000px;
+      margin: 0 auto 60px;
+      padding: 0 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+    .product {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: box-shadow 0.2s ease;
+    }
+    .product:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .product img {
+      max-width: 100%;
+      height: 160px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+    .product h4 {
+      margin: 10px 0 8px;
+      font-size: 1.1em;
+      color: #2e8b57;
+    }
+    .product p {
+      font-size: 0.9em;
+      color: #666;
+      height: 60px;
+      overflow: hidden;
+    }
+    .product .price {
+      margin-top: 12px;
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #e63946;
+    }
+
+    /* Contact Form */
+    #contact {
+      background: white;
+      max-width: 600px;
+      margin: 0 auto 60px;
+      padding: 40px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
+    #contact h2 {
+      text-align: center;
+      color: #2e8b57;
+      margin-bottom: 25px;
+    }
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    #contact label {
+      font-weight: bold;
+      font-size: 0.95em;
+      color: #333;
+    }
+    #contact input, #contact textarea {
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      resize: vertical;
+    }
+    #contact button {
+      background: #2e8b57;
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 12px;
+      font-size: 1.1em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #contact button:hover {
+      background: #3aa673;
+    }
+
+    footer {
+      background: #2e8b57;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.9em;
+    }
+    footer a {
+      color: #aad8b0;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    footer a:hover, footer a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    @media(max-width: 600px) {
+      .collections, .products {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav {
+        flex-wrap: wrap;
+      }
+      nav a {
+        margin: 8px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <a href="#home">Home</a>
+  <a href="#collections">Collections</a>
+  <a href="#products">Products</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<header id="home">
+  <h1>Welcome to Zoopal</h1>
+  <p>Your Global Pet Store — Everything for Dogs, Cats, Birds, Fish & Small Pets</p>
+  <a href="#products" class="button">Shop Now</a>
+</header>
+
+<section id="collections" class="collections" aria-label="Pet Collections">
+  <div class="collection" tabindex="0">
+    <img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&w=400&q=80" alt="Dog" />
+    <h3>Dogs</h3>
+  </div>
+  <div class="collection" tabindex="0">
+    <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=400&q=80" alt="Cat" />
+    <h3>Cats</h3>
+  </div>
+  <div class="collection" tabindex="0">
+    <img src="https://images.unsplash.com/photo-1501706362039-c6e5884f64d0?auto=format&fit=crop&w=400&q=80" alt="Bird" />
+    <h3>Birds</h3>
+  </div>
+  <div class="collection" tabindex="0">
+    <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=400&q=80" alt="Fish" />
+    <h3>Fish</h3>
+  </div>
+  <div class="collection" tabindex="0">
+    <img src="https://images.unsplash.com/photo-1525253086316-d0c936c814f8?auto=format&fit=crop&w=400&q=80" alt="Small Pets" />
+    <h3>Small Pets</h3>
+  </div>
+</section>
+
+<section id="products" class="products" aria-label="Featured Products">
+  <article class="product">
+    <img src="https://ae01.alicdn.com/kf/Hf91a4ac4535244f99d9f095176fdb54bL.jpg" alt="Durable Dog Chew Toy" />
+    <h4>Durable Dog Chew Toy</h4>
+    <p>Tough, non-toxic chew toy to keep dogs happy and active.</p>
+    <div class="price">$12.99</div>
+  </article>
+  <article class="product">
+    <img src="https://ae01.alicdn.com/kf/H448f850ffab54df09b46a23ef22c17e7H.jpg" alt="Cat Grooming Glove" />
+    <h4>Cat Grooming Glove</h4>
+    <p>Gentle brush glove for easy fur removal and massage.</p>
+    <div class="price">$9.99</div>
+  </article>
+  <article class="product">
+    <img src="https://ae01.alicdn.com/kf/H51fcd14b1ec840b5b0dcd0b97f23de78c.jpg" alt="Bird Swing Perch" />
+    <h4>Bird Swing Perch</h4>
+    <p>Safe and colorful swing for pet birds to rest and play.</p>
+    <div class="price">$14.99</div>
+  </article>
+  <article class="product">
+    <img src="https://ae01.alicdn.com/kf/Hf7bb08da2fc84e6f97b195ebdf5720b7k.jpg" alt="Aquarium LED Light Strip" />
+    <h4>Aquarium LED Light Strip</h4>
+    <p>Energy-efficient waterproof LED light for aquariums.</p>
+    <div class="price">$19.99</div>
+  </article>
+  <article class="product">
+    <img src="https://ae01.alicdn.com/kf/H6e98d03f34264f44b3e5a8cdbba1cb07F.jpg" alt="Small Pet Habitat Hideout" />
+    <h4>Small Pet Habitat Hideout</h4>
+    <p>Cozy hideout for rabbits, guinea pigs, and other small pets.</p>
+    <div class="price">$18.99</div>
+  </article>
+</section>
+
+<section id="contact" aria-label="Contact Form">
+  <h2>Contact Us</h2>
+  <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+    <label for="name">Name:</label>
+    <input id="name" name="name" type="text" required />
+
+    <label for="email">Email:</label>
+    <input id="email" name="email" type="email" required />
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2025 Zoopal | Your Global Pet Store</p>
+  <p>
+    <a href="#" aria-label="Facebook">Facebook</a> |
+    <a href="#" aria-label="Twitter">Twitter</a> |
+    <a href="#" aria-label="Instagram">Instagram</a>
+  </p>
+</footer>
+
+<script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  const form = document.querySelector('#contact form');
+
+  form.addEventListener('submit', function(event
